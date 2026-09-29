@@ -44,3 +44,13 @@ resource "azurerm_key_vault" "main" {
 }
 
 data "azurerm_client_config" "current" {}
+
+resource "azurerm_data_factory" "main" {
+  name                = "adf-bikeshare-dev"
+  location             = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+
+  identity {
+    type = "SystemAssigned"
+  }
+}
